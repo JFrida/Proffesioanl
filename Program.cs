@@ -4,49 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Delegates
+namespace Inheritance
 {
     public class Program
     {
-        delegate decimal DiscountCalculator(decimal totAmount);
-        
         static void Main(string[] args)
         {
-            // the same with Func
-           /* Func<decimal, decimal> discCalc;
-            discCalc = RegularCustomerDiscount;
-            Console.WriteLine(discCalc(100));*/
+            ////base and first classes
+            //Savings_Account savings_Account = new Savings_Account("Mane Sahakyan", 1002);
+            //Console.WriteLine(savings_Account.CheckAccountInfo());
 
+            ////second class
+            //Checking_Account checking_Account = new Checking_Account("Felix Matevosyan", 1500);
+            //Console.WriteLine(checking_Account.CheckAccountInfo());
+            //checking_Account.Withdrawal(18000);
+            //Console.WriteLine(checking_Account.CheckAccountInfo());
 
-            Console.WriteLine("Please input total amout of shopping");
-            decimal.TryParse(Console.ReadLine(), out decimal reg);
-            DiscountCalculator discountCalculator = RegularCustomerDiscount;
-            Console.WriteLine($"Dsicounted amount for regular customer will be {discountCalculator(reg)}");
-
-            Console.WriteLine("Please input total amout of shopping");
-            decimal.TryParse(Console.ReadLine(), out decimal vip);
-            DiscountCalculator discountCalculator1 = VIPCustomerDiscount;
-            Console.WriteLine($"Dsicounted amount for vip customer will be {discountCalculator1(vip)}");
-
-            Console.WriteLine("Please input total amout of shopping");
-            decimal.TryParse(Console.ReadLine(), out decimal sales);
-            DiscountCalculator discountCalculator2 = VIPCustomerDiscount;
-            Console.WriteLine($"Dsicounted amount for summer sales will be {discountCalculator2(sales)}");
-
+            // third class 
+            Fixed_Deposit_Account fixeed = new Fixed_Deposit_Account("Sergey Manvelyan", 1100, new DateTime(2022, 12, 20));
+            Console.WriteLine(fixeed.CheckAccountInfo());
+            fixeed.Withdrawal(200);
+            Console.WriteLine(fixeed.CheckAccountInfo());
             Console.ReadLine();
-
-        }
-        static decimal RegularCustomerDiscount(decimal totAmount)
-        {
-            return totAmount -= totAmount * 0.05m;
-        }
-        static decimal VIPCustomerDiscount(decimal totAmount)
-        {
-            return totAmount -= totAmount * 0.15m;
-        }
-        static decimal SaleDiscount(decimal totAmount)
-        {
-            return totAmount -= totAmount * 0.3m;
         }
     }
 }
