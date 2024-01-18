@@ -4,49 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Delegates
+namespace Generics
 {
     public class Program
     {
-        delegate decimal DiscountCalculator(decimal totAmount);
-        
         static void Main(string[] args)
         {
-            // the same with Func
-           /* Func<decimal, decimal> discCalc;
-            discCalc = RegularCustomerDiscount;
-            Console.WriteLine(discCalc(100));*/
+            // Check for int
+            Calculator<int> calculator = new Calculator<int>(12, 14);
+            calculator.Addition();
+            calculator.Division();
+            calculator.Multiplication();
+            calculator.Subtraction();
+
+            // Check for decimal
+            Calculator<decimal> calculator2 = new Calculator<decimal>(12.2m, 14.8m);
+            calculator2.Addition();
+            calculator2.Division();
+            calculator2.Multiplication();
+            calculator2.Subtraction();
 
 
-            Console.WriteLine("Please input total amout of shopping");
-            decimal.TryParse(Console.ReadLine(), out decimal reg);
-            DiscountCalculator discountCalculator = RegularCustomerDiscount;
-            Console.WriteLine($"Dsicounted amount for regular customer will be {discountCalculator(reg)}");
-
-            Console.WriteLine("Please input total amout of shopping");
-            decimal.TryParse(Console.ReadLine(), out decimal vip);
-            DiscountCalculator discountCalculator1 = VIPCustomerDiscount;
-            Console.WriteLine($"Dsicounted amount for vip customer will be {discountCalculator1(vip)}");
-
-            Console.WriteLine("Please input total amout of shopping");
-            decimal.TryParse(Console.ReadLine(), out decimal sales);
-            DiscountCalculator discountCalculator2 = VIPCustomerDiscount;
-            Console.WriteLine($"Dsicounted amount for summer sales will be {discountCalculator2(sales)}");
+            // Check for string
+            // if one of properties can't be possible to convert int then we will have exceptions for last three functions
+            Calculator<string> calculator1 = new Calculator<string>("46", "45");
+            calculator1.Addition();
+            calculator1.Division();
+            calculator1.Multiplication();
+            calculator1.Subtraction();
 
             Console.ReadLine();
-
-        }
-        static decimal RegularCustomerDiscount(decimal totAmount)
-        {
-            return totAmount -= totAmount * 0.05m;
-        }
-        static decimal VIPCustomerDiscount(decimal totAmount)
-        {
-            return totAmount -= totAmount * 0.15m;
-        }
-        static decimal SaleDiscount(decimal totAmount)
-        {
-            return totAmount -= totAmount * 0.3m;
         }
     }
 }
